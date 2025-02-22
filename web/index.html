@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario beca</title>
+    <link rel="stylesheet" href="estyles.css">
+    <script>
+        function mostrarAlerta() {
+            alert('¡Atención! Tus Datos no han sido guardados. El phishing es una técnica fraudulenta para robar información personal. Nunca compartas tus datos con sitios no verificados.');
+
+            // Crear elemento de imagen para la infografía
+            const infografia = document.createElement('img');
+            infografia.src = 'pishing.png'; 
+            infografia.alt = 'Infografía sobre phishing';
+            infografia.style.display = 'block';
+            infografia.style.margin = '20px auto';
+            infografia.style.maxWidth = '100%';
+
+            // Agregar la infografía al cuerpo del documento
+            document.body.innerHTML = ''; 
+            document.body.appendChild(infografia);
+        }
+
+        function validarContrasena() {
+            const contrasena = document.getElementById('contrasena').value;
+            if (!/^\d{4}$/.test(contrasena)) {
+                alert('La contraseña debe ser un número de 4 dígitos.');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <h2 class="text-center mb-4">REGISTRO PARA BECA</h2>
+        <form action="/enviar" method="post" class="form-container" enctype="multipart/form-data" onsubmit="return validarContrasena() && mostrarAlerta()">
+            <!-- Información personal -->
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="mb-3">
+                <label for="apellidos" class="form-label">Apellidos:</label>
+                <input type="text" class="form-control" id="apellidos" name="apellidos" required>
+            </div>
+            <div class="mb-3">
+                <label for="numero_cuenta" class="form-label">Número de Cuenta:</label>
+                <input type="text" class="form-control" id="numero_cuenta" name="numero_cuenta" required>
+            </div>
+            <div class="mb-3">
+                <label for="correo_inst" class="form-label">Correo Institucional:</label>
+                <input type="email" class="form-control" id="correo_inst" name="correo_inst" required>
+            </div>
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono:</label>
+                <input type="tel" class="form-control" id="telefono" name="telefono" required>
+            </div>
+            <div class="mb-3">
+                <label for="direccion" class="form-label">Dirección:</label>
+                <input type="text" class="form-control" id="direccion" name="direccion" required>
+            </div>
+            <div class="mb-3">
+                <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento:</label>
+                <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required>
+            </div>
+
+            <!-- Número de cuenta y contraseña -->
+            <div class="mb-3">
+                <label for="contrasena" class="form-label">Contraseña (4 dígitos):</label>
+                <input type="password" class="form-control" id="contrasena" name="contrasena" maxlength="4" pattern="\d{4}" required>
+            </div>
+
+            <!-- Información académica -->
+            <div class="mb-3">
+                <label for="carrera" class="form-label">Carrera:</label>
+                <input type="text" class="form-control" id="carrera" name="carrera" required>
+            </div>
+            <div class="mb-3">
+                <label for="promedio" class="form-label">Promedio General:</label>
+                <input type="number" step="0.01" min="0" max="10" class="form-control" id="promedio" name="promedio" required>
+            </div>
+            <div class="mb-3">
+                <label for="constancia" class="form-label">Constancia de Estudios:</label>
+                <input type="file" class="form-control" id="constancia" name="constancia" required>
+            </div>
+
+            <!-- Información socioeconómica -->
+            <div class="mb-3">
+                <label for="ingresos" class="form-label">Ingreso Familiar Mensual (MXN):</label>
+                <input type="number" class="form-control" id="ingresos" name="ingresos" required>
+            </div>
+            <div class="mb-3">
+                <label for="integrantes" class="form-label">Número de Integrantes en el Hogar:</label>
+                <input type="number" class="form-control" id="integrantes" name="integrantes" required>
+            </div>
+            <div class="mb-3">
+                <label for="comprobante_ingresos" class="form-label">Comprobante de Ingresos:</label>
+                <input type="file" class="form-control" id="comprobante_ingresos" name="comprobante_ingresos" required>
+            </div>
+
+            <!-- Carta de motivos -->
+            <div class="mb-3">
+                <label for="carta_motivos" class="form-label">Carta de Motivos:</label>
+                <textarea class="form-control" id="carta_motivos" name="carta_motivos" rows="4" required></textarea>
+            </div>
+
+            <!-- Selección de beca -->
+            <div class="mb-3">
+                <label for="beca" class="form-label">Beca Solicitada:</label>
+                <select class="form-control" id="beca" name="beca" required>
+                    <option value="beca_benito_juarez">Beca Benito Juárez (para estudiantes de educación superior en situación vulnerable).</option>
+                    <option value="beca_jovenes_futuro">Jóvenes Escribiendo el Futuro (para estudiantes de universidades públicas).</option>
+                    <option value="beca_conacyt">Becas CONACYT (para posgrados y maestrías en ciencia y tecnología).</option>
+                </select>
+            </div>
+
+            <!-- Enviar -->
+            <button type="submit" class="btn btn-primary w-100">Enviar</button>
+        </form>
+    </div>
+</body>
+</html>
